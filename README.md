@@ -38,26 +38,42 @@ formats are supported:
   ```
   Only allow commits if the current branch satisfies `<RegExp>`.
 
-* Validation object
+* Array of regular expressions
   ```
-  "branch": {
-    require: "<RegExp1>",
-    exclude: "<RegExp2>",
-    reason: "This is a bad branch name"
-  }
+  "branch": ["<RegExp1>", "<RegExp2>", "<RegExp3>"]
   ```
-  Only allow commits if the current branch satisfies `<RegExp1>` and does not satisfy `<RegExp2>`. If validation fails,
-  `reason` is printed out as additional information to tell the user why this check is in place.
-  `require`, `exclude` and `reason` are all optional and may be omitted.
+  Only allow commits if the current branch satisfies either of the regular expressions `<RegExp1>`, `<RegExp2>` or
+  `<RegExp3>`.
 
-* Array of validation objects
+* Array of validation rules
   ```
   "branch": [
-    {require: "...", exclude: "...", reason: "..."},
-    {require: "...", exclude: "...", reason: "..."}
+    {
+      test: "<RegExp1>",
+      forbid: "<ForbiddenRegExp1>",
+      reason: "Lovely commits need to be cool"
+    },
+    {
+      test: "<RegExp2>",
+      require: "<RequiredRegExp2>",
+      reason: "Cool commits need to be lovely"
+    },
+    "<RegExp3>"
   ]
   ```
-  Similar to the previous version except that all validation objects are checked in the provided order.
+  In the previous case, you can replace regular expressions by validation rules. Validation rule objects can have the
+  following fields:
+  - `test` (mandatory): To which branches does this validation object apply. Replaces the regular expression of the
+    simple version
+  - `require` (optional): An additional regular expression that needs to be satisfied by branches satisfying `test`
+  - `forbid` (optional): An additional regular expression that branches that satisfy `test` must not satisfy
+  - `reason` (optional): A description why this rule is in place. This is printed to the console as additional
+    information when this rule is violated.
+   
+  If a branch satisfies the `test` expressions of several rules, all `require` and `forbid` conditions of these rules
+  need to be met in order for the commit to pass.
+  
+  If you only have a single validation rule, you do not need to wrap it in an array.
 
 ## Troubleshooting
 You may safely check your configured hook against the current branch without committing by running
