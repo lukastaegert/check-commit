@@ -11,12 +11,12 @@
     "ramda": "^0.23.0",
     "ramda-fantasy": "^0.7.0"
   },
-  "bin": {
-    "check-commit-branch": "./bin/check-commit-branch.js"
-  },
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0"
+  },
+  "bin": {
+    "check-commit-branch": "./bin/check-commit-branch.js"
   },
   "scripts": {
     "test": "mocha"

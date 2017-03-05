@@ -1,0 +1,28 @@
+{
+  "config": {
+    "checkCommit": {
+      "ruleObject": {
+        "test": "regExpRuleObject",
+        "require": "regExpRequire",
+        "forbid": "regExpForbid",
+        "reason": "My Reason"
+      },
+      "missingExpressions": {
+        "reason": "My Reason"
+      },
+      "simple": "regExpSimple",
+      "ruleArray": [
+        {
+          "test": "regExpRule1",
+          "require": "regExpRequire",
+          "reason": "Reason 1"
+        },
+        {
+          "test": "regExpRule2",
+          "forbid": "regExpForbid",
+          "reason": "Reason 2"
+        }
+      ]
+    }
+  }
+}

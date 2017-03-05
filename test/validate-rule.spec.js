@@ -1,4 +1,4 @@
-const { validateRule } = require('../src/validate-rule');
+const validateRule = require('../src/validate-rule');
 const { expect } = require('chai');
 const { Either: { Right, Left } } = require('ramda-fantasy');
 

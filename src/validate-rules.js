@@ -1,6 +1,6 @@
+const validateRule = require('./validate-rule');
 const { compose, chain, equals, filter, ifElse, length, prop, reduce, test, __ } = require('ramda');
 const { Either: { Right, Left } } = require('ramda-fantasy');
-const { validateRule } = require('./validate-rule');
 
 const getMatchingRules = text => filter(compose(test(__, text), prop('test')));
 
@@ -12,7 +12,7 @@ const getEitherNoRulesOrRules = ifElse(
 
 const validateRules = text => chain(reduce(validateRule, Right(text)));
 
-module.exports.validateRules = text => compose(
+module.exports = text => compose(
   validateRules(text),
   getEitherNoRulesOrRules,
   getMatchingRules(text)
