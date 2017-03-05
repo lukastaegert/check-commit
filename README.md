@@ -3,7 +3,6 @@ Command line tools for commit validation with regular expressions suitable for
 [husky](https://github.com/typicode/husky).
 
 ## Usage
-
 check-commit requires Node 6+.
 Add check-commit and husky to your project:
 ```bash
