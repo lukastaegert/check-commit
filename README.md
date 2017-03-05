@@ -63,8 +63,8 @@ formats are supported:
   ```
   In the previous case, you can replace regular expressions by validation rules. Validation rule objects can have the
   following fields:
-  - `test` (mandatory): To which branches does this validation object apply. Replaces the regular expression of the
-    simple version
+  - `test` (mandatory): This rule only applies to branches which satisfy this regular expression. A branch can only be
+    valid if it satisfies at least one rule.
   - `require` (optional): An additional regular expression that needs to be satisfied by branches satisfying `test`
   - `forbid` (optional): An additional regular expression that branches that satisfy `test` must not satisfy
   - `reason` (optional): A description why this rule is in place. This is printed to the console as additional
@@ -74,6 +74,8 @@ formats are supported:
   need to be met in order for the commit to pass.
   
   If you only have a single validation rule, you do not need to wrap it in an array.
+  
+  Simple strings are equivalent to rules that only have a `test` field.
 
 ## Troubleshooting
 You may safely check your configured hook against the current branch without committing by running
