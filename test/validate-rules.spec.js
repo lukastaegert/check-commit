@@ -1,9 +1,9 @@
-const validateRules = require('../src/validate-rules');
-const { expect } = require('chai');
-const { Either: { Right, Left } } = require('ramda-fantasy');
+const validateRules = require('../src/validate-rules')
+const { expect } = require('chai')
+const { Either: { Right, Left } } = require('ramda-fantasy')
 
 describe('validateRules', () => {
-  const validateRulesForName = validateRules('name');
+  const validateRulesForName = validateRules('name')
 
   it('returns a Right if all matching rules are satisfied', () => {
     expect(validateRulesForName([ {
@@ -12,8 +12,8 @@ describe('validateRules', () => {
     }, {
       test: /^x/,
       require: /y/
-    } ])).to.deep.equal(Right('name'));
-  });
+    } ])).to.deep.equal(Right('name'))
+  })
 
   it('returns a Left if no rules match', () => {
     expect(validateRulesForName([ {
@@ -22,12 +22,12 @@ describe('validateRules', () => {
     }, {
       test: /^x/,
       require: /y/
-    } ])).to.deep.equal(Left('Does not match any rules'));
-  });
+    } ])).to.deep.equal(Left('Does not match any rules'))
+  })
 
   it('returns a Left if there are no rules', () => {
-    expect(validateRulesForName([])).to.deep.equal(Left('Does not match any rules'));
-  });
+    expect(validateRulesForName([])).to.deep.equal(Left('Does not match any rules'))
+  })
 
   it('returns an empty Left if one matching rule is violated', () => {
     expect(validateRulesForName([ {
@@ -36,8 +36,8 @@ describe('validateRules', () => {
     }, {
       test: /^n/,
       require: /y/
-    } ])).to.deep.equal(Left());
-  });
+    } ])).to.deep.equal(Left())
+  })
 
   it('returns a Left with a reason if provided', () => {
     expect(validateRulesForName([ {
@@ -48,6 +48,6 @@ describe('validateRules', () => {
       test: /^n/,
       reason: 'reason y',
       require: /y/
-    } ])).to.deep.equal(Left('reason y'));
-  });
-});
+    } ])).to.deep.equal(Left('reason y'))
+  })
+})
