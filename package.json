@@ -2,7 +2,7 @@
   "name": "check-commit",
   "version": "0.0.0-development",
   "description": "Command line tools for commit validation with regular expressions suitable for husky",
-  "author": "Lukas Taegert",
+  "author": "Lukas Taegert <lukas.taegert@tngtech.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -17,11 +17,13 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "codecov": "^1.0.1",
     "eslint": "^3.17.0",
     "eslint-config-standard": "^7.0.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^2.1.1",
     "husky": "^0.13.2",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "semantic-release": "^6.3.2",
     "validate-commit-msg": "^2.11.1"
@@ -45,6 +47,7 @@
   "scripts": {
     "test": "mocha",
     "lint": "eslint .",
+    "coverage": "istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -R spec",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "precommit": "yarn lint",
     "commitmsg": "validate-commit-msg",

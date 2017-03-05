@@ -11,6 +11,9 @@ before_install:
   - npm i -g npm@~4.0.0
 before_script:
   - npm prune
+script:
+  - npm run coverage
+  - codecov
 after_success:
   - npm run semantic-release
 branches:
